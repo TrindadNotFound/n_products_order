@@ -13,7 +13,7 @@ public class Order
 	
 	//Associação as demais classes criadas
 	private Client client;
-	private List<OrderItem> orderItem = new ArrayList<>();
+	private List<OrderItem> orderItem = new ArrayList<OrderItem>();
 	
 	public Order()
 	{
@@ -72,11 +72,11 @@ public class Order
 	
 	public double total()
 	{
-		double sum = 0;
+		double sum = 0.0;
 		
-		for(OrderItem o: orderItem)
+		for(OrderItem o : orderItem)
 		{			
-			sum += o.subTotal(o.getQuantity(), o.getPrice());
+			sum += o.subTotal();
 		}
 		
 		return sum;
