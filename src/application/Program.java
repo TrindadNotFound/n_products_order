@@ -16,7 +16,7 @@ public class Program
 {
 	public static void main(String[] args) throws ParseException
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm/ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
@@ -28,7 +28,7 @@ public class Program
 		System.out.print(">> Email: ");
 		String email = sc.nextLine();
 		
-		System.out.println(">> Birth date (DD/MM/YYYY): ");
+		System.out.print(">> Birth date (DD/MM/YYYY): ");
 		Date birthDate = sdf.parse(sc.next());
 		
 		//Intanciar um novo cliente
@@ -47,6 +47,7 @@ public class Program
 		System.out.println();
 		System.out.print("How many items to this order? ");
 		int numberOfItems = sc.nextInt();
+		sc.nextLine();
 		
 		for(int i = 1; i <= numberOfItems; i++)
 		{
@@ -57,11 +58,19 @@ public class Program
 			double productPrice = sc.nextDouble();
 			System.out.print(">> Quantity: ");
 			int productQuantity = sc.nextInt();
+			sc.nextLine();
+			System.out.println();
 			
 			Product product = new Product(productName, productPrice);
 			OrderItem orderItem = new OrderItem(productQuantity, productPrice, product);
 			order.addItem(orderItem);
 		}
+		
+		
+		System.out.println();
+		
+		System.out.println("Order summary");
+		System.out.println(order);
 		
 		sc.close();
 	}
