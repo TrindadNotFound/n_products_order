@@ -5,25 +5,25 @@ import java.util.Date;
 
 public class Client 
 {
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //SimpleDateFormat para formatacao das datas apresentadas
 	
 	private String name;
 	private String email;
 	private Date birthDate;
 	
-	public Client()
+	public Client() //Construtor
 	{
 		
 	}
 	
-	public Client(String name, String email, Date birthDate)
+	public Client(String name, String email, Date birthDate) //Construtor
 	{
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
 	}
 
-	
+	//Getter e Setter
 	public String getName() 
 	{
 		return name;
@@ -55,7 +55,7 @@ public class Client
 	}
 
 	@Override
-	public String toString() 
+	public String toString() //toString para imprimir no ecra os dados da classe
 	{
 		return name + " (" + sdf.format(birthDate) + ") - " + email;
  	}

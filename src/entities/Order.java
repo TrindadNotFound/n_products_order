@@ -10,27 +10,40 @@ import entities.enums.OrderStatus;
 public class Order 
 {
 
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Um SimpleDateFormat para uma melhor formatacao das datas
 	
+	//Variaveis da classe
 	private Date moment;
 	private OrderStatus status;
 	
-	//Associa√ß√£o as demais classes criadas
-	private Client client;
-	private List<OrderItem> orderItem = new ArrayList<OrderItem>();
 	
-	public Order()
+	/* Na documentacao fornecida para a elaboracao deste projeto
+	 * È indicado que a classe "Order" esta diretamente relacionada com as classes
+	 * "OrderItem" e "Client".
+	 * 
+	 * Neste caso, como cada Order vai ter varios OrderItems, È necessario criar uma List para armazenar
+	 * essa informacao
+	 * 
+	 * */
+	
+	//Associacao as calsses "Client" e "OrderItem"
+	private Client client; //Para a classe Client
+	private List<OrderItem> items = new ArrayList<OrderItem>(); //Para a classe OrderItem
+	
+	
+	public Order() //Contrutor
 	{
 		
 	}
 	
-	public Order(Date moment, OrderStatus status, Client client)
+	public Order(Date moment, OrderStatus status, Client client) //Contrutor
 	{
 		this.moment = moment;
 		this.status = status;
 		this.client = client;
 	}
 
+	//Getter e Setter
 	public Date getMoment() {
 		return moment;
 	}
@@ -56,29 +69,29 @@ public class Order
 	}
 
 	public List<OrderItem> getOrderItem() {
-		return orderItem;
+		return items;
 	}
-	
+	//------------------------------
 	
 	
 	//Adicionar e remover elementos (items) da lista
 	public void addItem(OrderItem item)
 	{
-		orderItem.add(item);
+		items.add(item);
 	}
 	
 	public void removeItem(OrderItem item)
 	{
-		orderItem.remove(item);
+		items.remove(item);
 	}
 	
 	
 	
-	public double total()
+	public double total() //Funcao para retornar o preco total da Order
 	{
 		double sum = 0.0;
 		
-		for(OrderItem o : orderItem)
+		for(OrderItem o : items)
 		{			
 			sum += o.subTotal();
 		}
@@ -87,7 +100,7 @@ public class Order
 	}
 
 	@Override
-	public String toString() 
+	public String toString() //StringBuilder que permite imprimir no ecra as informacaoes da classe por meio da chamada do objeto order decalrado e intanciado na classe Program
 	{
 		StringBuilder sb = new StringBuilder();
 		sb.append(">> Order moment: ");
@@ -96,17 +109,17 @@ public class Order
 		sb.append(status + "\n");
 		sb.append(">> Client: ");
 		sb.append(client + "\n");
-		sb.append(" ");
+		sb.append("\n");
 		sb.append(">> Order items:\n");
 		
-		for (OrderItem item : orderItem)
+		for (OrderItem item : items)
 		{
 			sb.append(item + "\n");
 		}
 		
-		sb.append(" ");
+		sb.append("\n");
 		
-		sb.append(">> Total price: ‚Ç¨");
+		sb.append(">> Total price: Ä");
 		sb.append(String.format("%.2f", total()));
 		return sb.toString();
 	}

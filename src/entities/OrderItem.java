@@ -5,20 +5,21 @@ public class OrderItem
 	private Integer quantity;
 	private Double price;
 	
-	private Product product;
+	private Product product; //Associacao a classe Product
 	
-	public OrderItem()
+	public OrderItem() //Construtor
 	{
 		
 	}
 	
-	public OrderItem(Integer quantity, Double price, Product product)
+	public OrderItem(Integer quantity, Double price, Product product) //Construtor
 	{
 		this.quantity = quantity;
 		this.price = price;
 		this.product = product;
 	}
 
+	//Getter e Setter
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -50,14 +51,13 @@ public class OrderItem
 	}
 
 	@Override
-	public String toString() 
+	public String toString() //toString para imprimir os dados da classe 
 	{
 		return "  >> " + product.getName() 
-				+ ", â‚¬" 
-				+ String.format("%.2f", price) 
+				+ ", €" + String.format("%.2f", price) 
 				+ ", Quantity: " 
 				+ quantity + 
-				", Subtotal: â‚¬" 
+				", Subtotal: €" 
 				+ String.format("%.2f", subTotal());
 	}
 }
